@@ -1,0 +1,2 @@
+const clients = [];
+const topics = [];

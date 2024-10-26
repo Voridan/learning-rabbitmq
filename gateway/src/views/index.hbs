@@ -1,0 +1,28 @@
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <title>API Gateway</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 20px; } h1 { color: #333; }
+      ul { list-style-type: none; padding: 0; } li { margin: 10px 0; } a {
+      text-decoration: none; color: #007bff; font-weight: bold; } a:hover {
+      text-decoration: underline; }
+      .active { color: rgba(5, 177, 63, 0.808); font-weight: bold; }
+      .inactive { color: rgba(124, 31, 31, 0.781); text-decoration: line-through; pointer-events: none;}
+    </style>
+  </head>
+  <body>
+    <h1>API Gateway</h1>
+    <p>The following microservices are available:</p>
+     <ul>
+        {{#each healthStatuses}}
+        <li>
+            <a href="{{@key}}" class="{{#ifEquals this 'Healthy'}}active{{else}}inactive{{/ifEquals}}">
+                {{@key}} - {{this}}
+            </a>
+        </li>
+        {{/each}}
+    </ul>
+  </body>
+</html>

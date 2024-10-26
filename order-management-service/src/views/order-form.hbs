@@ -1,0 +1,27 @@
+<html lang='en'></html>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <title>Create Order</title>
+  </head>
+  <body>
+    <h1>Create an Order</h1>
+    <form action='http://localhost:3000/orders/new-order' method='post'>
+      <label for='product'>Product</label>
+      <select id="product" name="product" required>
+        {{#each products}}
+          <option value="{{this.id}}">Product: {{this.name}}. At warehouse {{this.warehouse}}</option>
+        {{/each}}
+      </select>
+      
+
+      <label for="postOffice">Post Office:</label>
+      <select id="postOffice" name="postOffice" required>
+        {{#each postOffices}}
+          <option value="{{this.id}}">{{this.number}}</option>
+        {{/each}}
+      </select>
+      <button type='submit'>Create Product</button>
+    </form>
+  </body>
+</html>

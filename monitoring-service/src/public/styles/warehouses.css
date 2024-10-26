@@ -1,0 +1,22 @@
+body {
+  color: rgba(30, 71, 95, 0.979);
+}
+.warehouse-cnt {
+  margin-top: 30px;
+}
+h1 {
+  text-align: center;
+  font-size: 2rem;
+}
+.wh-list {
+  padding: 25px 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.wh-list li {
+  display: grid;
+  flex: 0 1 50%;
+  gap: 0.625rem;
+  border-bottom: 1px #000 solid;
+  padding: 0 0 5px 0;
+}

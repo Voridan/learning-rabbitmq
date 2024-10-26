@@ -1,0 +1,88 @@
+<h1>Product List</h1>
+
+<!-- Category filter dropdown -->
+<form id="categoryFilterForm" action="/products" method="get">
+  <label for="category">Filter by category:</label>
+  <select id="category" name="category" onchange="document.getElementById('categoryFilterForm').submit()">
+    <option value="">All Categories</option>
+    {{#each categories}}
+      <option value="{{this}}" {{#ifEquals this ../selectedCategory}}selected{{/ifEquals}}>{{this}}</option>
+    {{/each}}
+  </select>
+</form>
+
+{{#if products.length}}
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Category</th>
+        <th>Quantity</th>
+        <th>Warehouse ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each products}}
+        <tr>
+          <td>{{this.id}}</td>
+          <td>{{this.name}}</td>
+          <td>{{this.price}}</td>
+          <td>{{this.category}}</td>
+          <td>{{this.quantity}}</td>
+          <td>{{this.warehouse_id}}</td>
+          <td><button type="button" class="buyBtn">buy</button></td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+  <p>No products available.</p>
+{{/if}}
+
+<script defer>
+  const clientId = localStorage.getItem('clientId') || Math.floor(Math.random() * 1000);
+  if (!localStorage.getItem('clientId')) {
+    localStorage.setItem('clientId', clientId);
+  }
+  const events = new EventSource('http://localhost:3000/products/topic/order-confirmed/'+clientId);
+  events.onmessage = (ev => {
+    const data = typeof ev.data === "object" ? JSON.parse(ev.data) : ev.data;
+    if (data.routed) {
+      alert('Your order is being processed, go to orders service')
+    }else {
+      alert(data)
+    }
+  })
+  const btns = document.querySelectorAll('.buyBtn');
+  btns.forEach(btn => {
+    btn.addEventListener('click', async (e) => {
+    const productProperties = e.target.parentNode.parentNode.children;
+    const maxQ = +productProperties[4].innerText;
+    const quantity = +prompt('Enter product quantity: ');
+    if (isNaN(quantity) || quantity < 0 || quantity > maxQ) {
+      alert('Invalid quantity');
+      return;
+    }
+    const productId = productProperties[0].innerText;
+    try {
+      const res = await fetch('http://localhost:3000/products/buy', { 
+        method: 'POST',
+        headers: { 
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ productId, quantity, clientId }),
+      });
+      if (res.ok) {
+        alert('order is being processed, go to orders page to choose post office.');
+        productProperties[4].innerText = maxQ - quantity;
+      } else {
+        alert("something wrong. status: ", res.status);
+      }
+    } catch (err) {
+      alert(err.message);
+    }
+    });
+  })
+</script>

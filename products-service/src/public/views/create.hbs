@@ -1,0 +1,50 @@
+<h1>Create a New Product</h1>
+<form
+  id='create-product-form'
+  action='http://localhost:3000/products/new'
+  method='post'
+>
+  <div>
+    <label for='name'>Product Name:</label>
+    <input type='text' id='name' name='name' required />
+  </div>
+  <div>
+    <label for='price'>Price:</label>
+    <input type='number' id='price' name='price' step='0.01' required />$
+  </div>
+  <div>
+    <label for='price'>Quantity:</label>
+    <input
+      type='number'
+      id='quantity'
+      name='quantity'
+      step='1'
+      min='1'
+      required
+    />
+  </div>
+  <div>
+    <label for='category'>Category:</label>
+    <select id='category' name='category' required>
+      <option value=''>Select a category</option>
+      <option value='interior'>Interior</option>
+      <option value='electronics'>Electronics</option>
+      <option value='toys'>Toys</option>
+      <option value='housekeeping'>Housekeeping</option>
+      <option value='sport'>Sport</option>
+    </select>
+  </div>
+  <div>
+    <label for='warehouseId'>Warehouse</label>
+    <label>Warehouse:</label>
+    <div class='warehouse-list'>
+      {{#each warehouses}}
+        <label>
+          <input type='radio' name='warehouseId' value='{{id}}' required />
+          {{address}}
+        </label>
+      {{/each}}
+    </div>
+  </div>
+  <button type='submit'>Create Product</button>
+</form>

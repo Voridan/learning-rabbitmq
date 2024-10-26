@@ -1,0 +1,22 @@
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <title>Create Order</title>
+  </head>
+  <body>
+    <h1>Add Product to a Warehouse</h1>
+    <form action='http://localhost:3000/orders/new-product' method='post'>
+      <label for='name'>Product Name:</label>
+      <input type='text' id='name' name='name' required />
+
+      <label for='warehouse'>Warehouse:</label>
+      <select id='warehouse' name='warehouse' required>
+        {{#each warehouses}}
+          <option value='{{this.id}}'>{{this.address}}</option>
+        {{/each}}
+      </select>
+      <button type='submit'>Create Product</button>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 3.125rem;
+  z-index: 20;
+  background-color: #181818;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container {
+  max-width: 1200px;
+  margin: 4.0625rem auto 0;
+  padding: 1.25rem 0.9375rem;
+}
+
+ul {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.nav-link {
+  color: #fff;
+}
+.nav-link:hover {
+  text-decoration: underline;
+}

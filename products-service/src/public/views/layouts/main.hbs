@@ -1,0 +1,33 @@
+<html lang='en'></html>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <link
+      rel='stylesheet'
+      type='text/css'
+      href='/products/styles/nullstyle.css'
+    />
+    <link
+      rel='stylesheet'
+      type='text/css'
+      href='/products/styles/main.css'
+    />
+    {{#if cssFile}}
+      <link rel='stylesheet' href='/products/styles/{{cssFile}}' />
+    {{/if}}
+    <title>Products</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+      <ul>
+        <li><a class="nav-link" href="/products">all products</a></li>
+        <li><a class="nav-link" href="/products/create">create product</a></li>
+      </ul>
+      </nav>
+    </header>
+    <div class='container'>
+      {{{body}}}
+    </div>
+  </body>
+</html>

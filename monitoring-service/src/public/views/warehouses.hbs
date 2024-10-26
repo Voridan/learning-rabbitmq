@@ -1,0 +1,15 @@
+<div class='warehouse-cnt'>
+  <h1>Warehouses</h1>
+  <ul class='wh-list'>
+    {{#each warehouses}}
+      <li>
+        <h2>Warehouse ID: {{this.id}}</h2>
+        <p>Address: {{this.address}}</p>
+        <p>Location: Latitude
+          {{this.location.latitude}}, Longitude
+          {{this.location.longitude}}</p>
+        <p>Capacity: {{this.capacity}}</p>
+      </li>
+    {{/each}}
+  </ul>
+</div>

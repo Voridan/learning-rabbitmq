@@ -1,0 +1,41 @@
+<h1>Product List</h1>
+
+<form id="categoryFilterForm" action="/monitoring/products" method="get">
+  <label for="category">Filter by category:</label>
+  <select id="category" name="category">
+    <option value="">All Categories</option>
+    {{#each categories}}
+      <option value="{{this}}" {{#ifEquals this ../selectedCategory}}selected{{/ifEquals}}>{{this}}</option>
+    {{/each}}
+  </select>
+  <button type="submit">submit</button>
+</form>
+
+{{#if products.length}}
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Category</th>
+        <th>Quantity</th>
+        <th>Warehouse ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each products}}
+        <tr>
+          <td>{{this.id}}</td>
+          <td>{{this.name}}</td>
+          <td>{{this.price}}</td>
+          <td>{{this.category}}</td>
+          <td>{{this.quantity}}</td>
+          <td>{{this.warehouse_id}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+  <p>No products available.</p>
+{{/if}}

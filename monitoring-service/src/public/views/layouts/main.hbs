@@ -1,0 +1,45 @@
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <link
+      rel='stylesheet'
+      type='text/css'
+      href='/monitoring/styles/nullstyle.css'
+    />
+    <link rel='stylesheet' type='text/css' href='/monitoring/styles/main.css' />
+    {{#if cssFile}}
+      <link rel='stylesheet' href='monitoring/styles/{{cssFile}}' />
+    {{/if}}
+    <title>Monitoring</title>
+  </head>
+  <body>
+    <div class='container'>
+      <nav>
+        <ul class='nav-list'>
+          <li class='nav-item'><a
+              href='/monitoring/warehouses'
+              class='nav-link'
+            >warehouses</a></li>
+          <li class='nav-item'><a
+              href='/monitoring/postoffices'
+              class='nav-link'
+            >postoffices</a></li>
+          <li class='nav-item'><a
+              href='/monitoring/orders'
+              class='nav-link'
+            >orders</a></li>
+          <li class='nav-item'><a
+              href='/monitoring/products'
+              class='nav-link'
+            >products</a></li>
+          <li class='nav-item'><a
+              href='/monitoring/transports'
+              class='nav-link'
+            >transports</a></li>
+        </ul>
+      </nav>
+      {{{body}}}
+    </div>
+  </body>
+</html>
